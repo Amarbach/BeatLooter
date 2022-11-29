@@ -13,7 +13,7 @@ public class Character
     public WearableItem CurAccessory { get { return curAccessory; } set { curAccessory = value; } }
     private WearableItem curWeapon;
     public WearableItem CurWeapon { get { return curWeapon; } set { curWeapon = value; } }
-    public bool isDead { get { return status.cHP >= 0; } }
+    public bool isDead { get { return totalStatus.cHP <= 0; } }
     private Attributes totalStatus;
     public Attributes TotalStatus { get => totalStatus; set => totalStatus = value; }
 
@@ -118,5 +118,9 @@ public class Character
         else if (curArmor == item) curArmor = null;
         else if (curAccessory == item) curAccessory = null;
         UpdateTotalStatus();
+    }
+    public void DealDamageBy(Character other)
+    {
+        this.totalStatus.cHP -= Mathf.Max(0, other.TotalStatus.ATK - this.totalStatus.DEF);
     }
 }

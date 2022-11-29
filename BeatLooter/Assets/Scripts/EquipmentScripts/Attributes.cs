@@ -7,7 +7,7 @@ public class Attributes
     private int maxHP;
     public int mHP { get => maxHP; private set => maxHP = value; }
     private int curHP;
-    public int cHP { get => curHP; private set { curHP = value; if (curHP > maxHP) curHP = maxHP; } }
+    public int cHP { get => curHP; set { curHP = value; if (curHP > maxHP) curHP = maxHP; else if (curHP < 0) curHP = 0; } }
     private int atk;
     public int ATK { get => atk; private set => atk = value; }
     private int def;

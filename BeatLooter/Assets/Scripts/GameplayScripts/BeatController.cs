@@ -9,7 +9,8 @@ public class BeatController : MonoBehaviour
     private float beatInterval = 1f;
     private bool isRunning = true;
     private Stopwatch beatEvaluator;
-    private float errorMargin = 0.15f;
+    private float errorMargin = 0.3f;
+    private float perfectErrorMargin = 0.15f;
     public int testBeat = 0;
 
     public AudioSource audioPlayer;
@@ -38,28 +39,28 @@ public class BeatController : MonoBehaviour
         {
             float eval = EvaluateHit();
             //UnityEngine.Debug.Log(eval);
-            //audioPlayer.PlayOneShot(hitSound, 1.0f - eval);
+            if (eval < perfectErrorMargin) audioPlayer.PlayOneShot(hitSound, 1.0f - eval);
             if (eval < 2f * errorMargin) playerCharacter.initiateMove(new Vector3(1, 0, 0));
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
             float eval = EvaluateHit();
             //UnityEngine.Debug.Log(eval);
-            //audioPlayer.PlayOneShot(hitSound, 1.0f - eval);
+            if (eval < perfectErrorMargin) audioPlayer.PlayOneShot(hitSound, 1.0f - eval);
             if (eval < 2f * errorMargin) playerCharacter.initiateMove(new Vector3(-1, 0, 0));
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
             float eval = EvaluateHit();
             //UnityEngine.Debug.Log(eval);
-            //audioPlayer.PlayOneShot(hitSound, 1.0f - eval);
+            if (eval < perfectErrorMargin) audioPlayer.PlayOneShot(hitSound, 1.0f - eval);
             if (eval < 2f * errorMargin) playerCharacter.initiateMove(new Vector3(0, 1, 0));
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
             float eval = EvaluateHit();
             //UnityEngine.Debug.Log(eval);
-            //audioPlayer.PlayOneShot(hitSound, 1.0f - eval);
+            if (eval < perfectErrorMargin) audioPlayer.PlayOneShot(hitSound, 1.0f - eval);
             if (eval < 2f * errorMargin) playerCharacter.initiateMove(new Vector3(0, -1, 0));
         }
     }

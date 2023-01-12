@@ -28,8 +28,8 @@ public class GladiatorController : MonoBehaviour
     void Start()
     {
         inventory = new Inventory();
-        body = GetComponent<Rigidbody2D>();
         inventoryUI.SetInventory(inventory);
+        body = GetComponent<Rigidbody2D>();
 
         //ItemWorld.SpawnItemWorld(new Vector3(-5, 9, -2), new Item {itemType = Item.ItemType.Potatoe , amount =1});
         //ItemWorld.SpawnItemWorld(new Vector3(9.5f, 11.56f, -2), new Item { itemType = Item.ItemType.Tomatoe, amount = 1 });

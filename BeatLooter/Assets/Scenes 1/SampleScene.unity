@@ -135901,27 +135901,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4885610496867364, guid: 654bee44aa9fb2640ac43761ee8b0db8, type: 3}
   m_PrefabInstance: {fileID: 849210609}
   m_PrefabAsset: {fileID: 0}
---- !u!50 &542798911
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 542798906}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!70 &542798912
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -135938,6 +135917,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &542798913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542798906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9feb8020f91ff4e4ba5d5ab00ab09a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 1785680617}
+  targetPointV: {x: 0, y: 0, z: 0}
+  inventoryUI: {fileID: 707029732}
 --- !u!1 &544529472
 GameObject:
   m_ObjectHideFlags: 0
@@ -136121,11 +136115,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4885610496867364, guid: 654bee44aa9fb2640ac43761ee8b0db8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.48445746
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4885610496867364, guid: 654bee44aa9fb2640ac43761ee8b0db8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.31
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4885610496867364, guid: 654bee44aa9fb2640ac43761ee8b0db8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -136182,13 +136176,14 @@ PrefabInstance:
     - target: {fileID: 212091231746609792, guid: 654bee44aa9fb2640ac43761ee8b0db8, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300010, guid: 48e1b2d5340149e4e8204c79bac450e5, type: 3}
+      objectReference: {fileID: 21300008, guid: 384077842f7ea3c489e1a8de1cc4ad5c, type: 3}
     - target: {fileID: 212091231746609792, guid: 654bee44aa9fb2640ac43761ee8b0db8, type: 3}
       propertyPath: m_SortingOrder
       value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61241774273027454, guid: 654bee44aa9fb2640ac43761ee8b0db8, type: 3}
+    - {fileID: 114924676048065360, guid: 654bee44aa9fb2640ac43761ee8b0db8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 654bee44aa9fb2640ac43761ee8b0db8, type: 3}
 --- !u!1 &994670600
 GameObject:

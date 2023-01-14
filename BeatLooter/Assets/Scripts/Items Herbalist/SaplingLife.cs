@@ -16,7 +16,7 @@ public class SaplingLife : MonoBehaviour
     Sprite stage4;
     SpriteRenderer childImg;
     [SerializeField]
-    Item2.ItemType type;
+    ItemDefinition.ItemType type;
     void Start()
     {
         childImg = transform.Find("Img").GetComponent<SpriteRenderer>();
@@ -34,7 +34,7 @@ public class SaplingLife : MonoBehaviour
         yield return new WaitForSeconds(4f);
         childImg.sprite = stage4;
         yield return new WaitForSeconds(4f);
-        ItemWorld.SpawnItemWorld(childImg.transform.position, new Item2 { itemType = type, amount = 1 });
+        ItemWorld.SpawnItemWorld(childImg.transform.position, new ItemDefinition { itemType = type, amount = 1 });
         Destroy(gameObject);
     }
     // Update is called once per frame

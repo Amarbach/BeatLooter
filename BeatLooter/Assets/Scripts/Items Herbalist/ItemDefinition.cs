@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [Serializable]
-public class Item2
+public class ItemDefinition
 {
     public enum ItemType
     {

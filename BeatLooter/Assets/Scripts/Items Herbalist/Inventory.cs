@@ -5,22 +5,22 @@ using static Item;
 
 public class Inventory
 {
-    private List<Item2> itemList;
+    private List<ItemDefinition> itemList;
 
     public Inventory()
     {
-        itemList = new List<Item2>();
+        itemList = new List<ItemDefinition>();
         //AddItem(new Item { itemType = ItemType.Tomatoe, amount = 1 });
         //AddItem(new Item { itemType = ItemType.Potatoe, amount = 1 });
         Debug.Log("chyba dzia³a");
     }
 
-    public void AddItem(Item2 item)
+    public void AddItem(ItemDefinition item)
     {
         itemList.Add(item);
     }
 
-    public List<Item2> GetItemList()
+    public List<ItemDefinition> GetItemList()
     {
         return itemList;
     }

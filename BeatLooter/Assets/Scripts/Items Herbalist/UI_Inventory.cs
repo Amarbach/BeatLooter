@@ -30,7 +30,7 @@ public class UI_Inventory : MonoBehaviour
             if (c == itemSlotTemplate) continue;
             Destroy(c.gameObject);
         }
-        foreach(Item2 item in inventory.GetItemList())
+        foreach(ItemDefinition item in inventory.GetItemList())
         {
             RectTransform itemSlotReactTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
             itemSlotReactTransform.gameObject.SetActive(true);

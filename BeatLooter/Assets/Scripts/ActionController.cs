@@ -20,10 +20,9 @@ public class ActionController : MonoBehaviour
     private Inventory inventory;
     bool isLocked = false;
 
-    // Start is called before the first frame update
     void Start()
     {
-        inventory = new Inventory();
+        inventory = new Inventory(inventoryUI.X, inventoryUI.Y);
         inventoryUI.SetInventory(inventory);
         targetPointV = grid.GetCellCenterLocal(grid.LocalToCell(transform.position));
         transform.position = grid.GetCellCenterLocal(grid.LocalToCell(transform.position));
@@ -31,7 +30,6 @@ public class ActionController : MonoBehaviour
         transform.position = grid.GetCellCenterLocal(grid.LocalToCell(transform.position));
     }
 
-    // Update is called once per frame
     void Update()
     {
         var displacement = speed * Time.deltaTime;
@@ -102,16 +100,16 @@ public class ActionController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ItemWorld itemWorld = collision.GetComponent<ItemWorld>();
-        if (itemWorld != null && !isLocked && inventory.GetItemList().Count < 4)
+        ItemWorld itemWorld;
+        if (collision.TryGetComponent<ItemWorld>(out itemWorld) && itemWorld != null && !isLocked && inventory.GetSpaceLeft() >=1 )
         {
             isLocked = true;
             inventory.AddItem(itemWorld.GetItem());
             inventoryUI.RefreshInventoryItems();
             itemWorld.DestroySelf();
-
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         isLocked = false;

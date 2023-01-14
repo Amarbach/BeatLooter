@@ -11,7 +11,7 @@ public class ItemDefinition
         Tomatoe
     }
     public ItemType itemType;
-    public int amount;
+    public int amount=1;
 
     public Sprite GetSprite()
     {

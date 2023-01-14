@@ -38,7 +38,7 @@ public class GladiatorController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ItemWorld itemWorld=collision.GetComponent<ItemWorld>();
-        if(itemWorld!=null && !isLocked && inventory.GetItemList().Count<4)
+        if(itemWorld!=null && !isLocked && inventory.GetItemArray().Length<4)
         {
             isLocked = true;
             inventory.AddItem(itemWorld.GetItem());

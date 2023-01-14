@@ -11,6 +11,7 @@ public class SpawnSapling : MonoBehaviour
     private GameObject tomatoe;
     [SerializeField]
     private GameObject potatoe;
+    private int cooldown = 0; //no cooldown
     public void PlantSapling(Image img)
     {
         if(!isOnCooldown)
@@ -41,7 +42,7 @@ public class SpawnSapling : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(cooldown);
         isOnCooldown = false;
     }
     

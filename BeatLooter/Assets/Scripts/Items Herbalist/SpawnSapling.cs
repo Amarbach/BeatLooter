@@ -17,7 +17,6 @@ public class SpawnSapling : MonoBehaviour
         if(!isOnCooldown)
         {
             isOnCooldown=true;
-            Debug.Log("bomb has been planted");
             if(img.sprite== ItemAssets.Instance.Potatoe)
             {
                 PlantPotatoe();

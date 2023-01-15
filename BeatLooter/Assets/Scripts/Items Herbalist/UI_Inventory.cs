@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,10 +17,13 @@ public class UI_Inventory : MonoBehaviour
     private uint y;
     private float itemSlotCellSize = 80f;
     public uint Y => y;
-    
+    Transform allEqBackground;
+    Transform onlyToolbarEqBackground;
 
     private void Awake()
     {
+        allEqBackground = transform.Find("Background");
+        onlyToolbarEqBackground = transform.Find("BackgroundToolbar");
         itemSlotContainer = transform.Find("ItemSlotContainer");
         itemSlotTemplate = itemSlotContainer.Find("ItemSlotTemplate");
     }
@@ -35,6 +39,13 @@ public class UI_Inventory : MonoBehaviour
     public uint GetY() { return y; }
 
     public uint GetCapacity() { return x*y; }
+
+    public void SwapHideOrShowAllEq()
+    {
+        allEqBackground.gameObject.SetActive(!allEqBackground.gameObject.activeSelf);
+        onlyToolbarEqBackground.gameObject.SetActive(!allEqBackground.gameObject.activeSelf);
+        RefreshInventoryItems();
+    }
 
     public void DestroySlot(GameObject gameObject)
     {
@@ -57,18 +68,34 @@ public class UI_Inventory : MonoBehaviour
             Destroy(c.gameObject);
         }
         var items = inventory.GetItemArray();
+        
         for (uint i = 0; i < X; i++)
         {
             for (uint j = 0; j < Y; j++)
             {
-                if (items[i, j] is not null)
+                bool draw = true;
+                if(onlyToolbarEqBackground.gameObject.activeSelf && j>0)
+                {
+                    draw = false;
+                }
+                if(draw)
                 {
                     RectTransform itemSlotReactTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
                     itemSlotReactTransform.gameObject.SetActive(true);
                     itemSlotReactTransform.anchoredPosition = new Vector2(i * itemSlotCellSize, -j * itemSlotCellSize);
-                    Image image = itemSlotReactTransform.Find("Image").GetComponent<Image>();
-                    image.sprite = items[i, j].GetSprite();
-                }              
+                    if (items[i, j] is not null)
+                    {
+                        Image image = itemSlotReactTransform.Find("Image").GetComponent<Image>();
+                        image.sprite = items[i, j].GetSprite();
+                    }
+                    else
+                    {
+                        var image = itemSlotReactTransform.Find("Image").GetComponent<Image>();
+                        var button = itemSlotReactTransform.Find("Button").GetComponent<Button>();
+                        Destroy(image);
+                        Destroy(button);
+                    }
+                }
             }
         }
     }

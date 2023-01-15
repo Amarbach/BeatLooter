@@ -19,7 +19,6 @@ public class Inventory
         _x = x;
         capacity = x * y;
         itemList = new ItemDefinition[x,y];
-        Debug.Log("chyba dzia³a");
     }
 
     public void AddItem(ItemDefinition item)

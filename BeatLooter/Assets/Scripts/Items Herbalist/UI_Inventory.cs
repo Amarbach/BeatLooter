@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+using static Unity.VisualScripting.Member;
 using static UnityEditor.Progress;
 
 public class UI_Inventory : MonoBehaviour
@@ -11,14 +13,21 @@ public class UI_Inventory : MonoBehaviour
     private Transform itemSlotContainer;
     private Transform itemSlotTemplate;
     [SerializeField]
+    private Canvas canvas;
+    [SerializeField]
     private uint x;
     public uint X => x;
     [SerializeField] 
     private uint y;
-    private float itemSlotCellSize = 80f;
+    private float itemSlotCellSize = 64f;
     public uint Y => y;
     Transform allEqBackground;
     Transform onlyToolbarEqBackground;
+    [SerializeField]
+    private Transform eqSlot;
+    [Serializable]
+    public class PlantEvent : UnityEvent<ItemDefinition> {}
+    public PlantEvent PlantResult = new PlantEvent();
 
     private void Awake()
     {
@@ -47,6 +56,72 @@ public class UI_Inventory : MonoBehaviour
         RefreshInventoryItems();
     }
 
+    public void Swap(Vector2 source, Vector2 target)
+    {
+        if (source == eqSlot.GetComponent<RectTransform>().anchoredPosition)
+        {
+            SwapEq(target, target);
+            RefreshInventoryItems();
+            return;
+        }
+        float i1 = source.x / itemSlotCellSize;
+        float j1 = -source.y / itemSlotCellSize;
+
+        float i2 = target.x / itemSlotCellSize;
+        float j2 = -target.y / itemSlotCellSize;
+
+        inventory.SwapAt((uint)i1, (uint)j1, (uint)i2, (uint)j2);
+        RefreshInventoryItems();
+    }
+
+    public void SwapEq(Vector2 source, Vector2 target)
+    {
+        float i1 = source.x / itemSlotCellSize;
+        float j1 = -source.y / itemSlotCellSize;
+
+        inventory.SwapEqAt((uint)i1, (uint)j1);
+        RefreshInventoryItems();
+    }
+
+
+    private void Plant(uint x, uint y)
+    {
+        PlantResult.Invoke(inventory.GetAt(x, y));
+        inventory.DestorySlotAt(x, y);
+    }
+
+    private void Equip(uint x, uint y)
+    {
+        inventory.SwapEqAt(x, y);
+    }
+
+    private void Throw(uint x, uint y)
+    {
+        //TODO
+    }
+
+    public void UseItem(Vector2 item)
+    {
+        float i1 = item.x / itemSlotCellSize;
+        float j1 = -item.y / itemSlotCellSize;
+
+        InventoryAction inventoryAction = inventory.UseItem((uint)i1, (uint)j1);
+        if(inventoryAction==InventoryAction.Equip)
+        {
+            Equip((uint)i1, (uint)j1);
+            RefreshInventoryItems();
+        }
+        else if(inventoryAction == InventoryAction.Plant)
+        {
+            Plant((uint)i1, (uint)j1);
+            RefreshInventoryItems();
+        }
+        else
+        {
+            Throw((uint)i1, (uint)j1);
+        }
+    }
+
     public void DestroySlot(GameObject gameObject)
     {
         RectTransform itemSlotReactTransform;
@@ -61,7 +136,21 @@ public class UI_Inventory : MonoBehaviour
 
     public void RefreshInventoryItems()
     {
-        float itemSlotCellSize = 80f;
+        var equippedItem = inventory.GetEquippedItem();
+        if (equippedItem == null)
+        {
+            var img = eqSlot.Find("Image");
+            img.gameObject.SetActive(false);
+        }
+        else
+        {
+            var img = eqSlot.Find("Image");
+            img.gameObject.SetActive(true);
+            var image = img.GetComponent<Image>();
+            image.sprite = equippedItem.GetSprite();
+            DragDrop dragDrop = img.GetComponent<DragDrop>();
+            dragDrop.Canvas = canvas;
+        }
         foreach(Transform c in itemSlotContainer)
         {
             if (c == itemSlotTemplate) continue;
@@ -85,20 +174,21 @@ public class UI_Inventory : MonoBehaviour
                     itemSlotReactTransform.anchoredPosition = new Vector2(i * itemSlotCellSize, -j * itemSlotCellSize);
                     if (items[i, j] is not null)
                     {
-                        Image image = itemSlotReactTransform.Find("Image").GetComponent<Image>();
+                        var img = itemSlotReactTransform.Find("Image");
+                        Image image = img.GetComponent<Image>();
                         image.sprite = items[i, j].GetSprite();
+                        DragDrop dragDrop = img.GetComponent<DragDrop>();
+                        dragDrop.Canvas = canvas;
                     }
                     else
                     {
                         var image = itemSlotReactTransform.Find("Image").GetComponent<Image>();
-                        var button = itemSlotReactTransform.Find("Button").GetComponent<Button>();
+                        //var button = itemSlotReactTransform.Find("Button").GetComponent<Button>();
                         Destroy(image);
-                        Destroy(button);
+                        //Destroy(button);
                     }
                 }
             }
         }
     }
-
-
 }

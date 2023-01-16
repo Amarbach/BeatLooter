@@ -12,12 +12,12 @@ public class SpawnSapling : MonoBehaviour
     [SerializeField]
     private GameObject potatoe;
     private int cooldown = 0; //no cooldown
-    public void PlantSapling(Image img)
+    public void PlantSapling(ItemDefinition item)
     {
         if(!isOnCooldown)
         {
             isOnCooldown=true;
-            if(img.sprite== ItemAssets.Instance.Potatoe)
+            if(item.itemType == ItemDefinition.ItemType.Potatoe)
             {
                 PlantPotatoe();
             }

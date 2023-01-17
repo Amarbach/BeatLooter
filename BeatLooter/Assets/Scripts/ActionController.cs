@@ -34,29 +34,14 @@ public class ActionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, targetPointV) > speed*Time.deltaTime)
+        var displacement = speed * Time.deltaTime;
+        if (Vector3.Distance(transform.position, targetPointV) > displacement)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPointV, speed * Time.deltaTime);
-        } else
+            transform.position = Vector3.MoveTowards(transform.position, targetPointV, displacement);
+        } 
+        else
         {
             transform.position = targetPointV;
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            initiateMove(new Vector3(1, 0, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            initiateMove(new Vector3(-1, 0, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            initiateMove(new Vector3(0, 1, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            initiateMove(new Vector3(0, -1, 0));
         }
     }
 

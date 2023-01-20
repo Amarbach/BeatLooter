@@ -153,8 +153,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemWorld: {fileID: 9010669936935534111, guid: eb2e86877d677184ab458ed966e0eff8, type: 3}
+  TomatoeSeed: {fileID: 6790902163275402405, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
   Tomatoe: {fileID: 2134584563556110807, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
+  PotatoeSeed: {fileID: 540632357552999301, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
   Potatoe: {fileID: -6137242429100743368, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
+  Beetroot: {fileID: 21300006, guid: 92ee1a133b767894184137d68fa5845a, type: 3}
+  BeetrootSeed: {fileID: 21300008, guid: 92ee1a133b767894184137d68fa5845a, type: 3}
+  HeadacheMixture: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  PotatoeMixture: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!4 &352120521
 Transform:
   m_ObjectHideFlags: 0

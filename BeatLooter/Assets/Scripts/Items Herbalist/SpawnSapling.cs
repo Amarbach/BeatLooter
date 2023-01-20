@@ -17,13 +17,17 @@ public class SpawnSapling : MonoBehaviour
         if(!isOnCooldown)
         {
             isOnCooldown=true;
-            if(item.itemType == ItemDefinition.ItemType.Potatoe)
+            if(item.itemType == ItemDefinition.ItemType.PotatoeSeed)
             {
                 PlantPotatoe();
             }
-            else
+            else if (item.itemType == ItemDefinition.ItemType.TomatoeSeed)
             {
                 PlantTomatoe();
+            }
+            else
+            {
+                Debug.LogError("Not yet implementet for: " + item.itemType);
             }
             StartCoroutine(Wait());
         }

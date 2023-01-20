@@ -12,7 +12,13 @@ public class ItemAssets : MonoBehaviour
     }
     public Transform ItemWorld;
 
+    public Sprite TomatoeSeed;
     public Sprite Tomatoe;
+    public Sprite PotatoeSeed;
     public Sprite Potatoe;
+    public Sprite Beetroot;
+    public Sprite BeetrootSeed;
+    public Sprite HeadacheMixture;
+    public Sprite PotatoeMixture;
 
 }

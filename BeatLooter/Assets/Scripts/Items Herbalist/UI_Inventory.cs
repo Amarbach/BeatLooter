@@ -97,7 +97,7 @@ public class UI_Inventory : MonoBehaviour
 
     private void Throw(uint x, uint y)
     {
-        //TODO
+        //TODO *or not :P*
     }
 
     public void UseItem(Vector2 item)

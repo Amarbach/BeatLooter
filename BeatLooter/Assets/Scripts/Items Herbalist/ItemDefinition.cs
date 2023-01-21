@@ -19,7 +19,7 @@ public class ItemDefinition
     public ItemType itemType;
     public int amount=1;
 
-    public Sprite GetSprite()
+    public static Sprite GetSpriteFromType(ItemType itemType)
     {
         switch (itemType)
         {
@@ -32,5 +32,10 @@ public class ItemDefinition
             case ItemType.BeetrootSeed: return ItemAssets.Instance.BeetrootSeed;
             default: return ItemAssets.Instance.Tomatoe;
         }
+    }
+
+    public Sprite GetSprite()
+    {
+        return GetSpriteFromType(itemType);
     }
 }

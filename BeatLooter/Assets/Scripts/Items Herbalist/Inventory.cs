@@ -33,13 +33,9 @@ public class Inventory
             itemCount.Add(itemType, 0);
         }
         itemList = new ItemDefinition[x, y];
-        AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.Tomatoe, amount = 1 });
+        AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.Potatoe, amount = 1 });
         AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.Beetroot, amount = 1 });
-        AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.BeetrootSeed, amount = 1 });
-        AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.PotatoeMixture, amount = 1 });
-        AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.HeadacheMixture, amount = 1 });
-        AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.TomatoeSeed, amount = 1 });
-        AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.PotatoeSeed, amount = 1 });
+        AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.Potatoe, amount = 1 });
     }
 
     public int GetCountOfType(ItemDefinition.ItemType type)
@@ -56,11 +52,14 @@ public class Inventory
 
     void SubToItemCountByTypes(ItemDefinition item)
     {
-        int currentCount;
-        itemCount.TryGetValue(item.itemType, out currentCount);
-        itemCount[item.itemType] = currentCount - 1;
+        if(item is not null)
+        {
+            int currentCount;
+            itemCount.TryGetValue(item.itemType, out currentCount);
+            itemCount[item.itemType] = currentCount - 1;
+        }
     }
-
+ 
     public void AddItem(ItemDefinition item)
     {
         AddToItemCountByTypes(item);
@@ -142,5 +141,89 @@ public class Inventory
     public ItemDefinition[,] GetItemArray()
     {
         return itemList;
+    }
+
+    public bool TryCraftRecepie(CraftingRecepie recepie)
+    {
+        Debug.Log("Crafting: " +recepie.Result.ToString() + " = " + recepie.Ingredient1.ToString() + " + " + recepie.Ingredient2.ToString());
+        Vector2? ing1 = findItemLocation(recepie.Ingredient1, 1);
+        if(recepie.Ingredient2 is null)
+        {
+            if(ing1 is not null)
+            {
+                DestorySlotAt((uint)ing1.Value.x, (uint)ing1.Value.y);
+                AddItem(new ItemDefinition { amount = 1, itemType = recepie.Result });
+                return true;
+            }
+            else
+            {
+                if(equippedItemDefinition is not null && equippedItemDefinition.itemType == recepie.Ingredient1)
+                {
+                    SubToItemCountByTypes(equippedItemDefinition);
+                    equippedItemDefinition = null;
+                    AddItem(new ItemDefinition { amount = 1, itemType = recepie.Result });
+                    return true;
+                }
+                return false;
+            }
+        }
+        Vector2? ing2 = null;
+        if (recepie.Ingredient1 == recepie.Ingredient2)
+            ing2 = findItemLocation((ItemDefinition.ItemType)recepie.Ingredient2,2);
+        else
+            ing2 = findItemLocation((ItemDefinition.ItemType)recepie.Ingredient2, 1);
+        if (ing1 is null && ing2 is null)
+            return false;
+        else if (ing1 is not null && ing2 is null)
+        {
+            if (equippedItemDefinition is not null && equippedItemDefinition.itemType == recepie.Ingredient2)
+            {
+                SubToItemCountByTypes(equippedItemDefinition);
+                equippedItemDefinition = null;
+                DestorySlotAt((uint)ing1.Value.x, (uint)ing1.Value.y);
+                AddItem(new ItemDefinition { amount = 1, itemType = recepie.Result });
+                return true;
+            }
+            else 
+                return false;
+        }
+        else if (ing1 is null && ing2 is not null)
+        {
+            if (equippedItemDefinition is not null && equippedItemDefinition.itemType == recepie.Ingredient1)
+            {
+                SubToItemCountByTypes(equippedItemDefinition);
+                equippedItemDefinition = null;
+                DestorySlotAt((uint)ing2.Value.x, (uint)ing2.Value.y);
+                AddItem(new ItemDefinition { amount = 1, itemType = recepie.Result });
+                return true;
+            }
+            else 
+                return false;
+        }
+        else
+        {
+            DestorySlotAt((uint)ing1.Value.x, (uint)ing1.Value.y);
+            DestorySlotAt((uint)ing2.Value.x, (uint)ing2.Value.y);
+            AddItem(new ItemDefinition { amount = 1, itemType = recepie.Result });
+            return true;
+        }
+    }
+
+    Vector2? findItemLocation(ItemDefinition.ItemType type, int whichInTurn )
+    {
+        int which = 0;
+        for(int i = 0; i < _x; i++)
+        {
+            for(int j = 0; j < _y; j++)
+            {
+                if (itemList[i,j] is not null && itemList[i,j].itemType == type)
+                {
+                    which++;
+                    if(which == whichInTurn)
+                        return new Vector2(i, j);   
+                }
+            }
+        }
+        return null;
     }
 }

@@ -20,5 +20,4 @@ public class ItemAssets : MonoBehaviour
     public Sprite BeetrootSeed;
     public Sprite HeadacheMixture;
     public Sprite PotatoeMixture;
-
 }

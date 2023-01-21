@@ -9,7 +9,11 @@ using static UnityEditor.Progress;
 
 public class UI_Inventory : MonoBehaviour
 {
+    [Serializable]
+    public class RefreshOther : UnityEvent { }
+    public RefreshOther refresh;
     private Inventory inventory;
+    public Inventory Inventory => inventory;
     private Transform itemSlotContainer;
     private Transform itemSlotTemplate;
     [SerializeField]
@@ -41,6 +45,12 @@ public class UI_Inventory : MonoBehaviour
     {
         this.inventory = inventory;
         RefreshInventoryItems();
+    }
+
+    public void CraftFromRecepie(CraftingRecepie craftingRecepie)
+    {
+        if(inventory.TryCraftRecepie(craftingRecepie))
+            RefreshInventoryItems();
     }
 
     public uint GetX() { return x; }
@@ -136,6 +146,7 @@ public class UI_Inventory : MonoBehaviour
 
     public void RefreshInventoryItems()
     {
+        refresh.Invoke();
         var equippedItem = inventory.GetEquippedItem();
         if (equippedItem == null)
         {

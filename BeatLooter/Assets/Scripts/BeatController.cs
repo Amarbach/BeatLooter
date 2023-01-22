@@ -46,7 +46,7 @@ public class BeatController : MonoBehaviour
             if (eval < errorMargin)
             {
                 Combo();
-                playerCharacter.initiateMove(new Vector3(1, 0, 0));
+                playerCharacter.initiateMove(new Vector3(1, 0, 0), this.ComboMultiplier);
                 wasHit = true;
             }
             sinceLast.Restart();
@@ -58,7 +58,7 @@ public class BeatController : MonoBehaviour
             if (eval < errorMargin)
             {
                 Combo();
-                playerCharacter.initiateMove(new Vector3(-1, 0, 0));
+                playerCharacter.initiateMove(new Vector3(-1, 0, 0), this.ComboMultiplier);
                 wasHit = true;
             }
             sinceLast.Restart();
@@ -70,7 +70,7 @@ public class BeatController : MonoBehaviour
             if (eval < errorMargin)
             {
                 Combo();
-                playerCharacter.initiateMove(new Vector3(0, 1, 0));
+                playerCharacter.initiateMove(new Vector3(0, 1, 0), this.ComboMultiplier);
                 wasHit = true;
             }
             sinceLast.Restart();
@@ -82,7 +82,7 @@ public class BeatController : MonoBehaviour
             if (eval < errorMargin)
             {
                 Combo();
-                playerCharacter.initiateMove(new Vector3(0, -1, 0));
+                playerCharacter.initiateMove(new Vector3(0, -1, 0), this.ComboMultiplier);
                 wasHit = true;
             }
             sinceLast.Restart();

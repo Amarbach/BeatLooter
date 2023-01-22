@@ -144,6 +144,15 @@ public class UI_Inventory : MonoBehaviour
         }
     }
 
+    public void DestroyEquipped()
+    {
+        if (inventory.GetEquippedItem() != null)
+        {
+            inventory.DestroyEquipped();
+            RefreshInventoryItems();
+        }
+    }
+
     public void RefreshInventoryItems()
     {
         refresh.Invoke();

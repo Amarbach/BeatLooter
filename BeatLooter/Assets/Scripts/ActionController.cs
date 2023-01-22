@@ -19,6 +19,7 @@ public class ActionController : MonoBehaviour
     private UI_Inventory inventoryUI;
     private Inventory inventory;
     bool isLocked = false;
+    float actionIntensity = 1f;
 
     void Start()
     {
@@ -43,8 +44,9 @@ public class ActionController : MonoBehaviour
         }
     }
 
-    public void initiateMove(Vector3 direction)
+    public void initiateMove(Vector3 direction, float intensity)
     {
+        actionIntensity = intensity;
         if (direction.x != 0 && direction.y != 0) return;
         if (direction.x > 0)
         {
@@ -82,7 +84,25 @@ public class ActionController : MonoBehaviour
                 default: return FieldResult.Empty;
                 case "Enemy": return FieldResult.Enemy;
                 case "Obstacle": return FieldResult.Obstacle;
-                case "Item": return FieldResult.Item;
+                case "Item":
+                    ItemWorld itemWorld;
+                    int curIntensity = (int)(actionIntensity);
+                    if (other.TryGetComponent<ItemWorld>(out itemWorld) && itemWorld != null && !isLocked /*&& inventory.GetSpaceLeft() >= curIntensity*/)
+                    {
+                        for(int i = curIntensity; i > 0; i--)
+                        {
+                            if (inventory.GetSpaceLeft() >= i)
+                            {
+                                for (int j = 0; j < i; j++) inventory.AddItem(itemWorld.GetItem());
+                                break;
+                            }
+                        }
+                        //isLocked = true;
+                        //for(int j= 0; j < curIntensity; j++) inventory.AddItem(itemWorld.GetItem());
+                        inventoryUI.RefreshInventoryItems();
+                        itemWorld.DestroySelf();
+                    }
+                    return FieldResult.Item;
             }
         }
         return FieldResult.Empty;
@@ -100,14 +120,14 @@ public class ActionController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ItemWorld itemWorld;
-        if (collision.TryGetComponent<ItemWorld>(out itemWorld) && itemWorld != null && !isLocked && inventory.GetSpaceLeft() >=1 )
-        {
-            isLocked = true;
-            inventory.AddItem(itemWorld.GetItem());
-            inventoryUI.RefreshInventoryItems();
-            itemWorld.DestroySelf();
-        }
+        //ItemWorld itemWorld;
+        //if (collision.TryGetComponent<ItemWorld>(out itemWorld) && itemWorld != null && !isLocked && inventory.GetSpaceLeft() >=1 )
+        //{
+        //    isLocked = true;
+        //    inventory.AddItem(itemWorld.GetItem());
+        //    inventoryUI.RefreshInventoryItems();
+        //    itemWorld.DestroySelf();
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)

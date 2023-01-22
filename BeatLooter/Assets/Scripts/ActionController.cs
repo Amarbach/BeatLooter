@@ -5,7 +5,7 @@ using UnityEngine;
 public enum FieldResult
 {
     Empty,
-    Enemy,
+    Patient,
     Item,
     Obstacle
 }
@@ -82,7 +82,6 @@ public class ActionController : MonoBehaviour
             switch (other.tag)
             {
                 default: return FieldResult.Empty;
-                case "Enemy": return FieldResult.Enemy;
                 case "Obstacle": return FieldResult.Obstacle;
                 case "Item":
                     ItemWorld itemWorld;
@@ -103,6 +102,18 @@ public class ActionController : MonoBehaviour
                         itemWorld.DestroySelf();
                     }
                     return FieldResult.Item;
+                case "Patient":
+                    PatientController patient;
+                    ItemDefinition held = inventory.GetEquippedItem();
+                    if(other.TryGetComponent<PatientController>(out patient) && patient != null && held != null)
+                    {
+                        if (held.itemType == patient.Needed)
+                        {
+                            patient.Heal(actionIntensity);
+                            inventoryUI.DestroyEquipped();
+                        }
+                    }
+                    return FieldResult.Patient;
             }
         }
         return FieldResult.Empty;
@@ -115,6 +126,7 @@ public class ActionController : MonoBehaviour
             default: targetPointV = destination; break;
             case FieldResult.Empty: targetPointV = destination; break;
             case FieldResult.Obstacle: transform.position = destination; break;
+            case FieldResult.Patient: transform.position = destination; break;
         }
     }
 

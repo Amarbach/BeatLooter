@@ -121,6 +121,12 @@ public class Inventory
         itemList[x, y] = null;
     }
 
+    public void DestroyEquipped()
+    {
+        SubToItemCountByTypes(equippedItemDefinition);
+        equippedItemDefinition = null;
+    }
+
     public ItemDefinition GetAt(uint x, uint y)
     {
         return itemList[x, y];

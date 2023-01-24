@@ -136820,6 +136820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToBeSpawned: {fileID: 430813545}
+  spawnerRadius: 3
   tickRate: 5
 --- !u!136 &950018865
 CapsuleCollider:

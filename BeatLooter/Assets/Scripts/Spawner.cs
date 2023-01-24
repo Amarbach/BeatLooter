@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject objectToBeSpawned;
+    [SerializeField] private int spawnerRadius;
     private float tickTimer;
     [SerializeField] private float tickRate;  //Tick Rate for Spawning Objects
     // Start is called before the first frame update
@@ -19,8 +20,8 @@ public class Spawner : MonoBehaviour
         if(tickTimer >= tickRate)
         {
             tickTimer -= tickRate;
-            int radiusX = Random.Range(-3, 3);
-            int radiusY = Random.Range(-3, 3);
+            int radiusX = Random.Range(-1* spawnerRadius, spawnerRadius);
+            int radiusY = Random.Range(-1* spawnerRadius, spawnerRadius);
             Vector3 position = transform.position + new Vector3(radiusX, radiusY, 0);
             Instantiate(objectToBeSpawned, position, Quaternion.identity); //
         }

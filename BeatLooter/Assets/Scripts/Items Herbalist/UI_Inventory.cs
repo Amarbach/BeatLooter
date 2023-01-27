@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,6 +40,49 @@ public class UI_Inventory : MonoBehaviour
         onlyToolbarEqBackground = transform.Find("BackgroundToolbar");
         itemSlotContainer = transform.Find("ItemSlotContainer");
         itemSlotTemplate = itemSlotContainer.Find("ItemSlotTemplate");
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Item1"))
+        {
+            uint x = 0, y =0;
+            UseItemAtXY(x, y);
+        }
+        else if (Input.GetButtonDown("Item2"))
+        {
+            uint x = 1, y = 0;
+            UseItemAtXY(x, y);
+        }
+        else if (Input.GetButtonDown("Item3"))
+        {
+            uint x = 2, y = 0;
+            UseItemAtXY(x, y);
+        }
+        else if (Input.GetButtonDown("Item4"))
+        {
+            uint x = 3, y = 0;
+            UseItemAtXY(x, y);
+        }
+        else if (Input.GetButtonDown("Item5"))
+        {
+            uint x = 4, y = 0;
+            UseItemAtXY(x, y);
+        }
+        else if (Input.GetButtonDown("Item6"))
+        {
+            uint x = 5, y = 0;
+            UseItemAtXY(x, y);
+        }
+        else if (Input.GetButtonDown("Equipped"))
+        {
+            if (Inventory.GetEquippedItem() is not null  && Inventory.GetSpaceLeft() >= 1)
+            {
+                Inventory.AddItem(Inventory.GetEquippedItem());
+                Inventory.DestroyEquipped();
+                RefreshInventoryItems();
+            }
+        }
     }
 
     public void SetInventory(Inventory inventory)
@@ -110,26 +154,32 @@ public class UI_Inventory : MonoBehaviour
         //TODO *or not :P*
     }
 
-    public void UseItem(Vector2 item)
+    public void UseItemAtXY(uint x, uint y)
     {
-        float i1 = item.x / itemSlotCellSize;
-        float j1 = -item.y / itemSlotCellSize;
-
-        InventoryAction inventoryAction = inventory.UseItem((uint)i1, (uint)j1);
-        if(inventoryAction==InventoryAction.Equip)
+        InventoryAction? inventoryAction = inventory.UseItem(x, y);
+        if (inventoryAction is null) return;
+        if (inventoryAction == InventoryAction.Equip)
         {
-            Equip((uint)i1, (uint)j1);
+            Equip(x, y);
             RefreshInventoryItems();
         }
-        else if(inventoryAction == InventoryAction.Plant)
+        else if (inventoryAction == InventoryAction.Plant)
         {
-            Plant((uint)i1, (uint)j1);
+            Plant(x, y);
             RefreshInventoryItems();
         }
         else
         {
-            Throw((uint)i1, (uint)j1);
+            Throw(x, y);
+            RefreshInventoryItems();
         }
+    }
+
+    public void UseItemByInventoryPosition(Vector2 item)
+    {
+        float i1 = item.x / itemSlotCellSize;
+        float j1 = -item.y / itemSlotCellSize;
+        UseItemAtXY((uint)i1, (uint)j1);
     }
 
     public void DestroySlot(GameObject gameObject)

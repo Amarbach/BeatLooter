@@ -132,16 +132,20 @@ public class Inventory
         return itemList[x, y];
     }
 
-    public InventoryAction UseItem(uint x, uint y)
+    public InventoryAction? UseItem(uint x, uint y)
     {
-        if(itemList[x, y].itemType == ItemDefinition.ItemType.TomatoeSeed || itemList[x, y].itemType == ItemDefinition.ItemType.PotatoeSeed || itemList[x, y].itemType == ItemDefinition.ItemType.BeetrootSeed)
+        if (itemList[x, y] is not null)
         {
-            return InventoryAction.Plant;
+            if (itemList[x, y].itemType == ItemDefinition.ItemType.TomatoeSeed || itemList[x, y].itemType == ItemDefinition.ItemType.PotatoeSeed || itemList[x, y].itemType == ItemDefinition.ItemType.BeetrootSeed)
+            {
+                return InventoryAction.Plant;
+            }
+            else
+            {
+                return InventoryAction.Equip;
+            }
         }
-        else
-        {
-            return InventoryAction.Equip;
-        }
+        return null;
     }
 
     public ItemDefinition[,] GetItemArray()

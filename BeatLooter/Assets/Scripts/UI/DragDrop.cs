@@ -42,6 +42,13 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        inventory.UseItem(transform.parent.GetComponent<RectTransform>().anchoredPosition);
+        if(!isEqSlot)
+            inventory.UseItemByInventoryPosition(transform.parent.GetComponent<RectTransform>().anchoredPosition);
+        else if(inventory.Inventory.GetSpaceLeft()>=1)
+        {
+            inventory.Inventory.AddItem(inventory.Inventory.GetEquippedItem());
+            inventory.Inventory.DestroyEquipped();
+            inventory.RefreshInventoryItems();
+        }         
     }
 }

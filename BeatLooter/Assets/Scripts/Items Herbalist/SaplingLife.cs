@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class SaplingLife : MonoBehaviour
 {
     [SerializeField]
+    Sprite stage0;
+    [SerializeField]
     Sprite stage1;
     [SerializeField]
     Sprite stage2;
@@ -25,6 +27,8 @@ public class SaplingLife : MonoBehaviour
 
     IEnumerator LifeCycle()
     {
+        yield return new WaitForSeconds(4f);
+        childImg.sprite = stage0;
         yield return new WaitForSeconds(4f);
         childImg.sprite = stage1;
         yield return new WaitForSeconds(4f);

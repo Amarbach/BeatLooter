@@ -11,6 +11,12 @@ public class SpawnSapling : MonoBehaviour
     private GameObject tomatoe;
     [SerializeField]
     private GameObject potatoe;
+    [SerializeField]
+    private GameObject beetroot;
+    [SerializeField]
+    private GameObject sage;
+    [SerializeField]
+    private GameObject mint;
     private int cooldown = 0; //no cooldown
     public void PlantSapling(ItemDefinition item)
     {
@@ -24,6 +30,18 @@ public class SpawnSapling : MonoBehaviour
             else if (item.itemType == ItemDefinition.ItemType.TomatoeSeed)
             {
                 PlantTomatoe();
+            }
+            else if (item.itemType == ItemDefinition.ItemType.BeetrootSeed)
+            {
+                Instantiate(beetroot, transform.position, Quaternion.identity);
+            }
+            else if (item.itemType == ItemDefinition.ItemType.SageSeed)
+            {
+                Instantiate(sage, transform.position, Quaternion.identity);
+            }
+            else if (item.itemType == ItemDefinition.ItemType.MintSeed)
+            {
+                Instantiate(mint, transform.position, Quaternion.identity);
             }
             else
             {

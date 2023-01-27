@@ -29,8 +29,15 @@ public class UI_Crafting : MonoBehaviour
         new CraftingRecepie(ItemDefinition.ItemType.TomatoeSeed, ItemDefinition.ItemType.Tomatoe),
         new CraftingRecepie(ItemDefinition.ItemType.PotatoeSeed, ItemDefinition.ItemType.Potatoe),
         new CraftingRecepie(ItemDefinition.ItemType.BeetrootSeed, ItemDefinition.ItemType.Beetroot),
+        new CraftingRecepie(ItemDefinition.ItemType.MintSeed, ItemDefinition.ItemType.Mint),
+        new CraftingRecepie(ItemDefinition.ItemType.SageSeed, ItemDefinition.ItemType.Sage),
         new CraftingRecepie(ItemDefinition.ItemType.HeadacheMixture, ItemDefinition.ItemType.Tomatoe, ItemDefinition.ItemType.Beetroot),
         new CraftingRecepie(ItemDefinition.ItemType.PotatoeMixture, ItemDefinition.ItemType.Potatoe, ItemDefinition.ItemType.Potatoe),
+        new CraftingRecepie(ItemDefinition.ItemType.BeetAndMintSoup, ItemDefinition.ItemType.Beetroot, ItemDefinition.ItemType.Mint),
+        new CraftingRecepie(ItemDefinition.ItemType.NutritiousPotatoe, ItemDefinition.ItemType.Potatoe, ItemDefinition.ItemType.Sage),
+        new CraftingRecepie(ItemDefinition.ItemType.BloodPotatoe, ItemDefinition.ItemType.Beetroot, ItemDefinition.ItemType.Potatoe),
+        new CraftingRecepie(ItemDefinition.ItemType.BruisesOintment , ItemDefinition.ItemType.Mint, ItemDefinition.ItemType.Tomatoe),
+        new CraftingRecepie(ItemDefinition.ItemType.ElixisForMycosis, ItemDefinition.ItemType.Mint, ItemDefinition.ItemType.Sage),
     };
 
     private void Awake()

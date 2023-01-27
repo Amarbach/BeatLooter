@@ -18,6 +18,15 @@ public class ItemAssets : MonoBehaviour
     public Sprite Potatoe;
     public Sprite Beetroot;
     public Sprite BeetrootSeed;
+    public Sprite MintSeed;
+    public Sprite Mint;
+    public Sprite SageSeed;
+    public Sprite Sage;
     public Sprite HeadacheMixture;
     public Sprite PotatoeMixture;
+    public Sprite BeetAndMintSoup;
+    public Sprite NutritiousPotatoe;
+    public Sprite BloodPotatoe;
+    public Sprite BruisesOintment;
+    public Sprite ElixisForMycosis;
 }

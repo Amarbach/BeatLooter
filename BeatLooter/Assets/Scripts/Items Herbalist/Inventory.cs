@@ -136,7 +136,8 @@ public class Inventory
     {
         if (itemList[x, y] is not null)
         {
-            if (itemList[x, y].itemType == ItemDefinition.ItemType.TomatoeSeed || itemList[x, y].itemType == ItemDefinition.ItemType.PotatoeSeed || itemList[x, y].itemType == ItemDefinition.ItemType.BeetrootSeed)
+            if (itemList[x, y].itemType == ItemDefinition.ItemType.TomatoeSeed || itemList[x, y].itemType == ItemDefinition.ItemType.PotatoeSeed || 
+                itemList[x, y].itemType == ItemDefinition.ItemType.BeetrootSeed || itemList[x, y].itemType == ItemDefinition.ItemType.SageSeed || itemList[x, y].itemType == ItemDefinition.ItemType.MintSeed)
             {
                 return InventoryAction.Plant;
             }

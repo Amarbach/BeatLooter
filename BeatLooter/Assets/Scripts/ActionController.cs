@@ -86,7 +86,7 @@ public class ActionController : MonoBehaviour
                 case "Item":
                     ItemWorld itemWorld;
                     int curIntensity = (int)(actionIntensity);
-                    if (other.TryGetComponent<ItemWorld>(out itemWorld) && itemWorld != null && !isLocked /*&& inventory.GetSpaceLeft() >= curIntensity*/)
+                    if (other.TryGetComponent<ItemWorld>(out itemWorld) && itemWorld != null && !isLocked)
                     {
                         for(int i = curIntensity; i > 0; i--)
                         {
@@ -103,14 +103,43 @@ public class ActionController : MonoBehaviour
                     }
                     return FieldResult.Item;
                 case "Patient":
-                    PatientController patient;
+                    PatientController patient = null;
+                    patient = other.GetComponent<PatientController>();
                     ItemDefinition held = inventory.GetEquippedItem();
-                    if(other.TryGetComponent<PatientController>(out patient) && patient != null && held != null)
+                    CraftingRecepie needRecepie;
+                    CraftingRecepie hadRecepie;
+                    if(patient != null && held != null)
                     {
+                        needRecepie = RecepieDict.GetValue(patient.Needed);
+                        hadRecepie = RecepieDict.GetValue(held.itemType);
                         if (held.itemType == patient.Needed)
                         {
                             patient.Heal(actionIntensity);
+                            patient.React(Emotion.HAPPY);
                             inventoryUI.DestroyEquipped();
+                        }
+                        else if (hadRecepie != null && needRecepie != null)
+                        {
+                            if(hadRecepie.Ingredient1 == needRecepie.Ingredient1 || hadRecepie.Ingredient1 == needRecepie.Ingredient2 ||
+                                hadRecepie.Ingredient2 == needRecepie.Ingredient1 || hadRecepie.Ingredient2 == needRecepie.Ingredient2)
+                            {
+                                patient.React(Emotion.MIXED);
+                            }
+                            else
+                            {
+                                patient.React(Emotion.ANNOYED);
+                            }
+                        }
+                        else if (needRecepie != null)
+                        {
+                            if (held.itemType == needRecepie.Ingredient1 || held.itemType == needRecepie.Ingredient2)
+                            {
+                                patient.React(Emotion.GOOD);
+                            }
+                            else
+                            {
+                                patient.React(Emotion.BAD);
+                            }
                         }
                     }
                     return FieldResult.Patient;

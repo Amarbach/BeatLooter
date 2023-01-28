@@ -7,6 +7,7 @@ public class PatientController : MonoBehaviour
 {
     float curHealth = 0.0f;
     [SerializeField] float maxHealth = 5.0f;
+    [SerializeField] ReactionController reaction;
     [SerializeField] Slider healthSlider;
     [SerializeField] ItemDefinition.ItemType cure = ItemDefinition.ItemType.Tomatoe;
     public ItemDefinition.ItemType Needed { get { return cure; } }
@@ -35,5 +36,10 @@ public class PatientController : MonoBehaviour
             curHealth = maxHealth;
         }
         healthSlider.value = curHealth / maxHealth;
+    }
+
+    public void React(Emotion how)
+    {
+        reaction.ShowEmotion(how);
     }
 }

@@ -159,8 +159,17 @@ MonoBehaviour:
   Potatoe: {fileID: -6137242429100743368, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
   Beetroot: {fileID: 21300006, guid: 92ee1a133b767894184137d68fa5845a, type: 3}
   BeetrootSeed: {fileID: 21300008, guid: 92ee1a133b767894184137d68fa5845a, type: 3}
+  MintSeed: {fileID: 0}
+  Mint: {fileID: 0}
+  SageSeed: {fileID: 0}
+  Sage: {fileID: 0}
   HeadacheMixture: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   PotatoeMixture: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  BeetAndMintSoup: {fileID: 0}
+  NutritiousPotatoe: {fileID: 0}
+  BloodPotatoe: {fileID: 0}
+  BruisesOintment: {fileID: 0}
+  ElixisForMycosis: {fileID: 0}
 --- !u!4 &352120521
 Transform:
   m_ObjectHideFlags: 0
@@ -136001,6 +136010,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tomatoe: {fileID: 3608258678888567951, guid: 0ff6b69b92076c349994e26ff352e856, type: 3}
   potatoe: {fileID: 4069602091208009443, guid: 585650f827605984faaa1092505928c1, type: 3}
+  beetroot: {fileID: 0}
+  sage: {fileID: 0}
+  mint: {fileID: 0}
 --- !u!4 &1219649246
 Transform:
   m_ObjectHideFlags: 0
@@ -136428,6 +136440,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1575766181790360666, guid: dd2b0395ea3669845bc87c2552abce27, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6158210122211845848, guid: dd2b0395ea3669845bc87c2552abce27, type: 3}
       propertyPath: m_RootOrder
       value: 7

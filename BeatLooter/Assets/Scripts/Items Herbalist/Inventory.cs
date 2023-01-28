@@ -36,6 +36,9 @@ public class Inventory
         AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.Potatoe, amount = 1 });
         AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.Beetroot, amount = 1 });
         AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.Potatoe, amount = 1 });
+        AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.BruisesOintment, amount = 1 });
+        AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.HeadacheMixture, amount = 1 });
+        AddItem(new ItemDefinition() { itemType = ItemDefinition.ItemType.Tomatoe, amount = 1 });
     }
 
     public int GetCountOfType(ItemDefinition.ItemType type)

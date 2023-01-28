@@ -7,6 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using static Unity.VisualScripting.Member;
 using static UnityEditor.Progress;
+using System.Linq;
 
 public class UI_Crafting : MonoBehaviour
 {
@@ -24,9 +25,10 @@ public class UI_Crafting : MonoBehaviour
     private UI_Inventory ui_inventory;
     private float setAlpha = 180f;
 
-    List<CraftingRecepie> craftingRecepies = new List<CraftingRecepie>()
-    {
-        new CraftingRecepie(ItemDefinition.ItemType.TomatoeSeed, ItemDefinition.ItemType.Tomatoe),
+    List<CraftingRecepie> craftingRecepies = RecepieDict.craftingDict.Values.ToList<CraftingRecepie>();
+    /*{
+
+
         new CraftingRecepie(ItemDefinition.ItemType.PotatoeSeed, ItemDefinition.ItemType.Potatoe),
         new CraftingRecepie(ItemDefinition.ItemType.BeetrootSeed, ItemDefinition.ItemType.Beetroot),
         new CraftingRecepie(ItemDefinition.ItemType.MintSeed, ItemDefinition.ItemType.Mint),
@@ -38,13 +40,19 @@ public class UI_Crafting : MonoBehaviour
         new CraftingRecepie(ItemDefinition.ItemType.BloodPotatoe, ItemDefinition.ItemType.Beetroot, ItemDefinition.ItemType.Potatoe),
         new CraftingRecepie(ItemDefinition.ItemType.BruisesOintment , ItemDefinition.ItemType.Mint, ItemDefinition.ItemType.Tomatoe),
         new CraftingRecepie(ItemDefinition.ItemType.ElixisForMycosis, ItemDefinition.ItemType.Mint, ItemDefinition.ItemType.Sage),
-    };
+    };*/
 
     private void Awake()
     {
+        var a = (RecepieDict.GetValue(ItemDefinition.ItemType.PotatoeMixture));
+        var b = (RecepieDict.GetValue(ItemDefinition.ItemType.Potatoe));
+        var a1 = (RecepieDict.craftingDict[ItemDefinition.ItemType.PotatoeMixture]);
+        var b1 =(RecepieDict.craftingDict[ItemDefinition.ItemType.PotatoeSeed]);
         allEqBackground = transform.Find("BackgroundCrafting");
         itemSlotContainer = transform.Find("ItemSlotContainer");
         itemSlotTemplate = itemSlotContainer.Find("ItemSlotTemplate");
+
+
     }
 
     private void Start()
@@ -103,24 +111,4 @@ public class UI_Crafting : MonoBehaviour
         }
     }
 }
-public class CraftingRecepie
-{
-    private ItemDefinition.ItemType result;
-    public ItemDefinition.ItemType Result => result;
-    private ItemDefinition.ItemType ingredient1;
-    public ItemDefinition.ItemType Ingredient1 => ingredient1;
-    private ItemDefinition.ItemType? ingredient2;
-    public ItemDefinition.ItemType? Ingredient2 => ingredient2;
 
-    public CraftingRecepie
-        (
-            ItemDefinition.ItemType result,
-            ItemDefinition.ItemType ingredient1,
-            ItemDefinition.ItemType? ingredient2 = null
-        )
-    {
-        this.result = result;
-        this.ingredient1 = ingredient1;
-        this.ingredient2 = ingredient2;
-    }
-}

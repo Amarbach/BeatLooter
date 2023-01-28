@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8209214022779389465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8209214022779389463}
+  - component: {fileID: 8209214022779389462}
+  m_Layer: 0
+  m_Name: ItemsAssets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8209214022779389463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8209214022779389465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 221.57147, y: 964.34796, z: -179.59196}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8209214022779389462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8209214022779389465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87854f8c49584944ca73ae64f41b9ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemWorld: {fileID: 9010669936935534111, guid: eb2e86877d677184ab458ed966e0eff8, type: 3}
+  TomatoeSeed: {fileID: 6790902163275402405, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
+  Tomatoe: {fileID: -58275134, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  PotatoeSeed: {fileID: 540632357552999301, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
+  Potatoe: {fileID: -614514720, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  Beetroot: {fileID: -26727876, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  BeetrootSeed: {fileID: 503778870, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  MintSeed: {fileID: 60074622, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  Mint: {fileID: -42669213, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  SageSeed: {fileID: -320868282, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  Sage: {fileID: 1548539410, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  HeadacheMixture: {fileID: 2037624713, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  PotatoeMixture: {fileID: -1842432945, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  BeetAndMintSoup: {fileID: -1887954684, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  NutritiousPotatoe: {fileID: 1800590440, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  BloodPotatoe: {fileID: 533055681, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  BruisesOintment: {fileID: 1540072003, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  ElixisForMycosis: {fileID: 778214055, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}

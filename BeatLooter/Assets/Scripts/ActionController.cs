@@ -76,7 +76,7 @@ public class ActionController : MonoBehaviour
 
     private FieldResult CheckDestination(Vector3 destination)
     {
-        Collider2D other = Physics2D.OverlapCircle(new Vector2(destination.x, destination.y), 0.45f);
+        Collider2D other = Physics2D.OverlapCircle(new Vector2(destination.x, destination.y), 0.25f);
         if (other != null)
         {
             switch (other.tag)

@@ -20,7 +20,7 @@ public class ReactionController : MonoBehaviour
     [SerializeField] private Sprite mixed;
     [SerializeField] private Sprite good;
     [SerializeField] private Sprite bad;
-    private float lifetime = 0.5f;
+    private float lifetime = 2f;
     private float life = 0f;
 
     void Update()

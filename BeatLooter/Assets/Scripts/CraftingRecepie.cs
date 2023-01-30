@@ -31,6 +31,7 @@ public static class RecepieDict
 {
     static public Dictionary<ItemDefinition.ItemType, CraftingRecepie> craftingDict = new Dictionary<ItemDefinition.ItemType, CraftingRecepie>()
     {
+        {ItemDefinition.ItemType.TomatoeSeed, new CraftingRecepie(ItemDefinition.ItemType.TomatoeSeed, ItemDefinition.ItemType.Tomatoe)  },
         {ItemDefinition.ItemType.PotatoeSeed, new CraftingRecepie(ItemDefinition.ItemType.PotatoeSeed, ItemDefinition.ItemType.Potatoe)  },
         {ItemDefinition.ItemType.BeetrootSeed, new CraftingRecepie(ItemDefinition.ItemType.BeetrootSeed, ItemDefinition.ItemType.Beetroot) },
         {ItemDefinition.ItemType.MintSeed, new CraftingRecepie(ItemDefinition.ItemType.MintSeed, ItemDefinition.ItemType.Mint) },

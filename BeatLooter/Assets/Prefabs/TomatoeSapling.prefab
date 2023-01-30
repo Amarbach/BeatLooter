@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3608258678888567951}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.346118}
+  m_LocalPosition: {x: 1, y: -1, z: 5.346118}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9951a9b887862041b47a6e3b571e90c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage0: {fileID: 5837099966769130633, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
-  stage1: {fileID: -1154585496681916454, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
-  stage2: {fileID: 7615517831003101548, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
-  stage3: {fileID: -6298926748983034480, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
-  stage4: {fileID: 6541508295191479496, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
+  stage0: {fileID: -1283234036, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  stage1: {fileID: -605437813, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  stage2: {fileID: 1977675937, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  stage3: {fileID: 249627811, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
+  stage4: {fileID: -984445967, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
   type: 1
 --- !u!1 &3608258679975753852
 GameObject:
@@ -124,7 +124,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 5837099966769130633, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
+  m_Sprite: {fileID: -1283234036, guid: 13bc854003ee0c64bbc32f52bdc8fcf1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

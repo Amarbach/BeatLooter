@@ -5,25 +5,55 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject objectToBeSpawned;
-    [SerializeField] private int spawnerRadius;
+    [SerializeField] private float spawnerRadius;
     private float tickTimer;
     [SerializeField] private float tickRate;  //Tick Rate for Spawning Objects
-    // Start is called before the first frame update
-    void Start()
+
+    private GameObject spawnedObject;
+    private readonly List<ItemDefinition.ItemType> availableCures = new List<ItemDefinition.ItemType>()
     {
+        ItemDefinition.ItemType.HeadacheMixture,
+        ItemDefinition.ItemType.PotatoeMixture,
+        ItemDefinition.ItemType.BeetAndMintSoup,
+        ItemDefinition.ItemType.NutritiousPotatoe,
+        ItemDefinition.ItemType.BloodPotatoe,
+        ItemDefinition.ItemType.BruisesOintment,
+        ItemDefinition.ItemType.ElixisForMycosis
+    };
+     
+    
+    void Awake()
+    {
+        Spawn();
     }
 
     // Update is called once per frame
     void Update()
     {
-        tickTimer += Time.deltaTime;
+        if (spawnedObject is null)
+            tickTimer += Time.deltaTime;
         if(tickTimer >= tickRate)
         {
             tickTimer -= tickRate;
-            int radiusX = Random.Range(-1* spawnerRadius, spawnerRadius);
-            int radiusY = Random.Range(-1* spawnerRadius, spawnerRadius);
-            Vector3 position = transform.position + new Vector3(radiusX, radiusY, 0);
-            Instantiate(objectToBeSpawned, position, Quaternion.identity); //
+            Spawn();
         }
+    }
+    private void Spawn()
+    {
+        float radiusX = Random.Range(-1 * spawnerRadius, spawnerRadius);
+        float radiusY = Random.Range(-1 * spawnerRadius, spawnerRadius);
+        Vector3 position = transform.position + new Vector3(radiusX, radiusY, 0);
+        spawnedObject = Instantiate(objectToBeSpawned, position, Quaternion.identity); 
+        if( spawnedObject.TryGetComponent<PatientController>(out PatientController patientController) )
+        {
+            int index = Random.Range(0, availableCures.Count);
+            patientController.SetCure(availableCures[index]);
+        }
+    }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        if(spawnerRadius > 0)
+            Gizmos.DrawWireCube(transform.position, new Vector3(spawnerRadius*2, spawnerRadius*2, spawnerRadius*2));
     }
 }

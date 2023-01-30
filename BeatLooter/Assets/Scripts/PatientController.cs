@@ -10,6 +10,12 @@ public class PatientController : MonoBehaviour
     [SerializeField] ReactionController reaction;
     [SerializeField] Slider healthSlider;
     [SerializeField] ItemDefinition.ItemType cure = ItemDefinition.ItemType.Tomatoe;
+
+    public void SetCure(ItemDefinition.ItemType cureType)
+    {
+        cure = cureType;
+    }
+
     public ItemDefinition.ItemType Needed { get { return cure; } }
 
     void Start()

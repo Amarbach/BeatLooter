@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9951a9b887862041b47a6e3b571e90c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stage0: {fileID: -4040449000033433201, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
   stage1: {fileID: -8318362866922064807, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
   stage2: {fileID: -7459952145008203106, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}
   stage3: {fileID: -5297165369167654283, guid: 198ba5bf4a1915c4c934d80c9ad7ac47, type: 3}

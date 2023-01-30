@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spawnedObject is null)
+        if (spawnedObject == null)
             tickTimer += Time.deltaTime;
         if(tickTimer >= tickRate)
         {

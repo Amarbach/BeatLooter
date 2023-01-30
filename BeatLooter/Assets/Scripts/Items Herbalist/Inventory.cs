@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Events;
-using static Item;
 using static ItemDefinition;
-using static UnityEditor.Experimental.GraphView.Port;
+
 public enum InventoryAction
 {
     Equip, Plant, Trow

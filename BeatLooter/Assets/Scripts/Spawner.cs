@@ -43,7 +43,7 @@ public class Spawner : MonoBehaviour
         float radiusX = Random.Range(-1 * spawnerRadius, spawnerRadius);
         float radiusY = Random.Range(-1 * spawnerRadius, spawnerRadius);
         Vector3 position = transform.position + new Vector3(radiusX, radiusY, 0);
-        spawnedObject = Instantiate(objectToBeSpawned, position, Quaternion.identity); 
+        spawnedObject = Instantiate(objectToBeSpawned, position, Quaternion.identity, transform); 
         if( spawnedObject.TryGetComponent<PatientController>(out PatientController patientController) )
         {
             int index = Random.Range(0, availableCures.Count);

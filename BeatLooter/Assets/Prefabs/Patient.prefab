@@ -198,6 +198,11 @@ MonoBehaviour:
   reaction: {fileID: 7323834715333046336}
   healthSlider: {fileID: 6158210122411871262}
   cure: 1
+  ren: {fileID: 6158210122211845851}
+  coll: {fileID: 6158210122211845849}
+  Healed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &6158210122211845849
 BoxCollider2D:
   m_ObjectHideFlags: 0

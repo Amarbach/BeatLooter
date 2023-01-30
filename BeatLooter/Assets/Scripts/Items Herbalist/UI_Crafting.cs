@@ -5,8 +5,6 @@ using UnityEngine;
 using System;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using static Unity.VisualScripting.Member;
-using static UnityEditor.Progress;
 using System.Linq;
 
 public class UI_Crafting : MonoBehaviour

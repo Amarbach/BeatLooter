@@ -1,12 +1,7 @@
-using JetBrains.Annotations;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using static Unity.VisualScripting.Member;
-using static UnityEditor.Progress;
 
 public class UI_Inventory : MonoBehaviour
 {

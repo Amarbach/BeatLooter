@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class BeatController : MonoBehaviour
 {
-    private float beatInterval = 1f;
+    private float beatInterval = 0.8f;
     private bool isRunning = true;
     private Stopwatch beatEvaluator;
     private Stopwatch sinceLast;
@@ -101,6 +101,7 @@ public class BeatController : MonoBehaviour
     private void OnBeat()
     {
         beatEvaluator.Restart();
+        audioPlayer.PlayOneShot(beatSound);
         StartCoroutine(CheckMiss());
     }
 
